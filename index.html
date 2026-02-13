@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Happy Valentine's Day ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Container tengah */
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+/* ===== HEART RAIN ===== */
+.heart {
+  position: fixed;
+  width: 25px;
+  height: 25px;
+  background: #ff4d88;
+  transform: rotate(45deg);
+  top: -30px;
+  animation: fallHeart linear infinite;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: #ff4d88;
+  border-radius: 50%;
+}
+
+.heart::before { top: -12px; left: 0; }
+.heart::after { left: -12px; top: 0; }
+
+@keyframes fallHeart {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(45deg);
+  }
+  100% {
+    transform: translateY(110vh) translateX(40px) rotate(45deg);
+  }
+}
+
+/* ===== PAGE ===== */
+.page {
+  display: none;
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+  z-index: 2;
+}
+
+.page.active {
+  display: block;
+  animation: fade 0.6s ease;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  color: #E05F77;
+}
+
+button {
+  margin-top: 25px;
+  padding: 12px 28px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background: white;
+  color: #ff2e7e;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.07);
+}
+
+/* GRID FOTO */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.grid img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.grid img:hover {
+  transform: rotate(-4deg) scale(1.05);
+}
+
+/* LIGHTBOX */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 20px;
+}
+
+/* CONFETTI */
+.confetti {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  top: -10px;
+  animation: fall 3s linear forwards;
+  z-index: 5;
+}
+
+@keyframes fall {
+  to { transform: translateY(100vh) rotate(360deg); }
+}
+
+.center-img {
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin: 20px 0;
+}
+
+.center-img2 {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin: 20px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- PAGE 0 -->
+<div class="page active" id="page0">
+  <h1>Will you be my Valentine? 💖</h1>
+  <button onclick="nextPage(0)">YES 💘</button>
+  <button id="noBtn">NO 😈</button>
+</div>
+
+<!-- PAGE 1 -->
+<div class="page" id="page1">
+  <img src="gif2.gif" class="center-img">
+  <br>
+  <h1>YEAY!!! 🎉</h1>
+  <button onclick="nextPage(1)">Lanjut ➜</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <h1>Happy Valentine's Day Byby! 💖💖</h1>
+  <img src="gif1.gif" class="center-img">
+  <br>
+  <button onclick="nextPage(2)">Lanjut ➜</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <h1>Our Memories 📸</h1>
+  <div class="grid">
+    <img src="foto1.jpg" onclick="openLightbox(this.src)">
+    <img src="foto2.jpg" onclick="openLightbox(this.src)">
+    <img src="foto3.jpg" onclick="openLightbox(this.src)">
+    <img src="foto4.jpg" onclick="openLightbox(this.src)">
+    <img src="foto5.jpg" onclick="openLightbox(this.src)">
+    <img src="foto6.jpg" onclick="openLightbox(this.src)">
+    <img src="foto7.jpg" onclick="openLightbox(this.src)">
+    <img src="foto8.jpg" onclick="openLightbox(this.src)">
+    <img src="foto9.jpg" onclick="openLightbox(this.src)">
+  </div>
+  <button onclick="nextPage(3)">Lanjut ➜</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+  <h1>Untuk Kamu 🤍</h1>
+
+  <div style="
+    max-width: 700px;
+    margin: auto;
+    background: rgba(255,255,255,0.2);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: #b30059;
+  ">
+    <p>
+      Sejak ada kamu, semuanya jadi terasa berbeda lho. 
+      Hari-hari biasa berubah jadi seru dan bermakna, 
+      dunia terasa lebih indah hanya karena ada kamu di dalamnya (asekkkk). 
+      Terima kasih yaa udah menjadi tempat pulang terbaik, 
+      tempat aku merasa diterima, dimengerti, dan dicinta😋.
+    </p>
+
+    <p>
+      Aku gataw gimana kedepannya akan berjalan, 
+      tapi yang pasti aku maw kita jalanin ini sama sama yaa. 
+      Dengan segala cerita, impian, dan perjalanan yang akan kita lalui, 
+      aku akan selalu memilih kamu, lagi dan lagi. 
+      Happy Valentine's Day byby ❤️❤️❤️❤️❤️
+    </p>
+    <button onclick="nextPage(4)">Lanjut ➜</button>
+  </div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+  <img src="foto10.jpg" class="center-img2">
+  
+</div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
+</div>
+
+<script>
+function nextPage(n){
+  document.getElementById("page"+n).classList.remove("active");
+  document.getElementById("page"+(n+1)).classList.add("active");
+  window.scrollTo({top:0, behavior:'smooth'});
+  if(n===0){ startConfetti(); }
+}
+
+/* NO BUTTON KABUR */
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",()=>{
+  noBtn.style.position="absolute";
+  noBtn.style.left=Math.random()*80+"vw";
+  noBtn.style.top=Math.random()*80+"vh";
+});
+
+/* LIGHTBOX */
+function openLightbox(src){
+  document.getElementById("lightbox").style.display="flex";
+  document.getElementById("lightbox-img").src=src;
+}
+function closeLightbox(){
+  document.getElementById("lightbox").style.display="none";
+}
+
+/* HEART RAIN GENERATOR */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+  heart.style.opacity = 0.6 + Math.random() * 0.4;
+  heart.style.transform = "scale(" + (0.8 + Math.random() * 0.6) + ") rotate(45deg)";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 10000);
+}
+
+/* Create hearts continuously */
+setInterval(createHeart, 300);
+
+/* CONFETTI */
+function startConfetti(){
+  for(let i=0;i<120;i++){
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.background="hsl("+Math.random()*360+",70%,60%)";
+    c.style.animationDuration=(2+Math.random()*2)+"s";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),4000);
+  }
+}
+</script>
+
+</body>
+</html>
+
